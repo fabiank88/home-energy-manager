@@ -15,7 +15,6 @@ type Engine struct {
 
 func (e *Engine) run() {
 	for {
-		//if evcc is powercharging - take battery offline
 		err := e.evcc.Refresh()
 		if err != nil {
 			log.Fatal(err.Error())
@@ -29,7 +28,7 @@ func (e *Engine) run() {
 		fmt.Println(`------------ Status --------------`)
 		fmt.Println(`Battery Mode: `, battery.OperatingModeToString(e.battery.GetOperatingMode()))
 		fmt.Println(`Battery SOC: `, e.battery.GetSoc())
-		fmt.Println(`Battery Flow: `, e.battery.GetFlow())
+		fmt.Println(`Battery Flow: `, e.battery.GetFlow()*-1)
 		fmt.Println(`EVCC Power Mode: `, e.evcc.IsPowerCharging())
 		fmt.Println(`----------------------------------`)
 
