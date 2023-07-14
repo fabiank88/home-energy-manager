@@ -1,3 +1,4 @@
 config.yaml
 dist/
 GITHUBTOKEN
+/.idea/vcs.xml
