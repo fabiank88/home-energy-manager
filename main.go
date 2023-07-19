@@ -8,7 +8,7 @@ import (
 
 func main() {
 	//read yaml config file
-	config := GetConf(`config.yaml`)
+	config := GetConf(`/etc/hem.yaml`)
 
 	bat, err := battery.New(config.Battery)
 	if err != nil {

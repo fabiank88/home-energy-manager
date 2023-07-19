@@ -17,7 +17,7 @@ func GetConf(filepath string) config {
 
 	file, err := os.ReadFile(filepath)
 	if err != nil {
-		log.Fatal("could not read config")
+		log.Fatal("could not read config from " + filepath)
 	}
 	c := config{}
 	err = yaml.Unmarshal(file, &c)

@@ -13,8 +13,8 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      - windows
-      - darwin
+      #- windows
+      #- darwin
     goarch:
       - amd64
       - arm
@@ -65,14 +65,12 @@ nfpms:
     maintainer: fabiank88 <fabiankothe@googlemail.com>
     license: MIT
     vendor: fabiank88
-
+    bindir: /usr/bin
     formats:
       - deb
-
     contents:
       - src: ./packaging/init/hem.service
         dst: /lib/systemd/system/hem.service
-
     scripts:
       preinstall: ./packaging/scripts/preinstall.sh
       postinstall: ./packaging/scripts/postinstall.sh

@@ -2,12 +2,11 @@
 
 = How to install =
 
-sudo dpkg -i  https://github.com/fabiank88/home-energy-manager/releases/
+download package
+sudo dpkg -i  package.deb
 
 == For Developers ==
 
 
 == For Owners ==
 
-= How to release =
-https://goreleaser.com/quick-start/

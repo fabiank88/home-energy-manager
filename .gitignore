@@ -2,4 +2,5 @@ config.yaml
 dist/
 .DS_Store
 GITHUBTOKEN
+.saved-commands
 /.idea/vcs.xml
