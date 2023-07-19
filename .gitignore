@@ -1,4 +1,5 @@
 config.yaml
 dist/
+.DS_Store
 GITHUBTOKEN
 /.idea/vcs.xml

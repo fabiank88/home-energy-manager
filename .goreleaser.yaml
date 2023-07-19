@@ -7,15 +7,26 @@ before:
     # you may remove this if you don't need go generate
     - go generate ./...
 builds:
-  - env:
+  - id: hem
+    binary: hem
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
       - windows
       - darwin
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
 
 archives:
-  - format: tar.gz
+  - format: binary
     # this name template makes the OS and Arch compatible with the results of uname.
     name_template: >-
       {{ .ProjectName }}_
@@ -25,9 +36,9 @@ archives:
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     # use zip for windows archives
-    format_overrides:
-    - goos: windows
-      format: zip
+    #format_overrides:
+    #- goos: windows
+    #  format: zip
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -43,3 +54,27 @@ changelog:
 # Feel free to remove those if you don't want/use them.
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+nfpms:
+  - id: default
+    package_name: hem
+    file_name_template: "{{ .ConventionalFileName }}"
+
+    homepage: https://github.com/fabiank88/home-energy-manager
+    description: Home Energy Manager
+    maintainer: fabiank88 <fabiankothe@googlemail.com>
+    license: MIT
+    vendor: fabiank88
+
+    formats:
+      - deb
+
+    contents:
+      - src: ./packaging/init/hem.service
+        dst: /lib/systemd/system/hem.service
+
+    scripts:
+      preinstall: ./packaging/scripts/preinstall.sh
+      postinstall: ./packaging/scripts/postinstall.sh
+      preremove: ./packaging/scripts/preremove.sh
+      postremove: ./packaging/scripts/postremove.sh

@@ -2,6 +2,8 @@
 
 = How to install =
 
+sudo dpkg -i  https://github.com/fabiank88/home-energy-manager/releases/
+
 == For Developers ==
 
 
