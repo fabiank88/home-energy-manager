@@ -2,8 +2,15 @@
 
 = How to install =
 
-download package
-sudo dpkg -i  package.deb
+download package from https://github.com/fabiank88/home-energy-manager/releases/latest
+sudo dpkg -i package.deb
+
+sudo systemctl status hem # zeigt den Status
+sudo systemctl start hem # startet den Dienst
+sudo systemctl stop hem # stoppt den Dienst
+sudo systemctl restart hem # startet den Dienst neu
+sudo systemctl enable hem # aktiviert den Dienst
+sudo systemctl disable hem # deaktiviert den Dienst
 
 == For Developers ==
 
