@@ -21,6 +21,7 @@ type state struct {
 		Loadpoints []struct {
 			Mode          string
 			ChargeCurrent int
+			Charging      bool
 		}
 	}
 }
@@ -35,8 +36,10 @@ func (e *Evcc) Refresh() error {
 
 func (e *Evcc) IsPowerCharging() bool {
 	for _, loadpoint := range e.state.Result.Loadpoints {
-		if loadpoint.Mode == `now` || (loadpoint.Mode == `pv` && loadpoint.ChargeCurrent == 16) {
-			return true
+		if loadpoint.Charging == true {
+			if loadpoint.Mode == `now` || (loadpoint.Mode == `pv` && loadpoint.ChargeCurrent == 16) {
+				return true
+			}
 		}
 	}
 	return false
